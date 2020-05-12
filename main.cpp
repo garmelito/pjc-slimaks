@@ -3,14 +3,13 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <QDebug>
 
-class Stworzenie
-{
+class Stworzenie {
 public:
     std::string nazwa;
     int wielkosc;
     static Stworzenie* head;
+    Stworzenie* previous;
     Stworzenie* next;
     static int iloscStworzen;
 
@@ -18,66 +17,71 @@ public:
     virtual void rozmnazajSie() = 0;
     virtual void przezyjDzien() = 0;
 
-    virtual ~Stworzenie()
-    {
+    virtual ~Stworzenie() {
         std::cout << "Wywolano destruktor Stowrzenia" << std::endl;
     }
 };
 
-class Roslina : public Stworzenie
-{
+class Roslina : public Stworzenie {
 public:
     static int iloscRoslin;
 
-    Roslina()
-    {
+    Roslina() {
         nazwa = "roslina";
         wielkosc = 1;
+
         iloscRoslin++;
         iloscStworzen++;
+
         next = head;
+        previous = nullptr;
+        if (head != nullptr)
+            head->previous = this;
         head = this;
     }
-    ~Roslina()
-    {
+
+    ~Roslina() {
         std::cout << "Wywolano destruktor rosliny" << std::endl;
+        Roslina::iloscRoslin--;
+        Stworzenie::iloscStworzen--;
+
+        previous->next = next;
+        next->previous = previous;
     }
-    void rosnij()
-    {
+
+    void rosnij() {
         wielkosc = wielkosc + 3;
     }
-    void rozmnazajSie()
-    {
+
+    void rozmnazajSie() {
         Stworzenie* nowe = new Roslina();
     }
-    void przezyjDzien()
-    {
+
+    void przezyjDzien() {
         rosnij();
         rozmnazajSie();
     }
 };
 
-class Slimak : public Stworzenie
-{
+class Slimak : public Stworzenie {
 public:
     int wiek;
 
-    virtual ~Slimak()
-    {
+    virtual ~Slimak() {
         std::cout << "Wywolano destruktor slimaka" << std::endl;
     }
-    void rosnij()
-    {
+
+    void rosnij() {
         wielkosc = wielkosc * 1.1;
     }
+
     virtual void rozmnazajSie() = 0;
     virtual void zjedz() = 0;
-    void umieraj()
-    {
+
+    void umieraj() {
 
     }
-    void przezyjDzien()
-    {
+    void przezyjDzien() {
         rosnij();
         rozmnazajSie();
         zjedz();
@@ -85,30 +89,36 @@ public:
     }
 };
 
-class RoslinozernySlimak : public Slimak
-{
+class RoslinozernySlimak : public Slimak {
 public:
     static int iloscRoslinozernychSlimakow;
 
-    RoslinozernySlimak()
-    {
+    RoslinozernySlimak() {
         nazwa = "roslinozernySlimak";
         wielkosc = 10;
         iloscRoslinozernychSlimakow++;
         iloscStworzen++;
         next = head;
+        previous = nullptr;
+        if (head != nullptr)
+            head->previous = this;
         head = this;
     }
-    ~RoslinozernySlimak()
-    {
+
+    ~RoslinozernySlimak() {
         std::cout << "Wywolano destruktor roslinozernego slimaka" << std::endl;
+        RoslinozernySlimak::iloscRoslinozernychSlimakow--;
+        Stworzenie::iloscStworzen--;
+
+        previous->next = next;
+        next->previous = previous;
     }
-    void rozmnazajSie()
-    {
+
+    void rozmnazajSie() {
         Stworzenie* nowe = new RoslinozernySlimak();
     }
-    void zjedz()
-    {
+
+    void zjedz() {
         if (Roslina::iloscRoslin == 0)
             std::cout << "Wszystkie rosliny zostaly zniszczone! " << std::endl;
         else {
@@ -121,43 +131,41 @@ public:
                     zjadane = zjadane->next;
                 std::cout << "zjadane: " << zjadane->nazwa <<", " << zjadane->wielkosc << std::endl;
             }while(zjadane->nazwa != "roslina");
-
-            //zamiast tego wprowadze Stworzenie* previous i usuwanie bedzie odbywalo sie w destruktorach
-            zjadane = head;
-            for (int i = 0; i < zjadany - 1; i++)
-                zjadane = zjadane->next;
-            zjadane->next = zjadane->next->next;
-            Roslina::iloscRoslin--;
-            Stworzenie::iloscStworzen--;
-            delete zjadane;
+//            delete zjadane;
         }
     }
 };
 
-class DrapieznySlimak : public Slimak
-{
+class DrapieznySlimak : public Slimak {
 public:
     static int iloscDrapieznychSlimakow;
 
-    DrapieznySlimak()
-    {
+    DrapieznySlimak() {
         nazwa = "drapieznySlimak";
         wielkosc = 10;
         iloscDrapieznychSlimakow++;
         iloscStworzen++;
         next = head;
+        previous = nullptr;
+        if (head != nullptr)
+            head->previous = this;
         head = this;
     }
-    ~DrapieznySlimak()
-    {
+
+    ~DrapieznySlimak(){
         std::cout << "Wywolano destruktor drapieznego slimaka" << std::endl;
+        DrapieznySlimak::iloscDrapieznychSlimakow--;
+        Stworzenie::iloscStworzen--;
+
+        previous->next = next;
+        next->previous = previous;
     }
-    void rozmnazajSie()
-    {
+
+    void rozmnazajSie(){
         Stworzenie* nowe = new DrapieznySlimak();
     }
-    void zjedz()
-    {
+
+    void zjedz() {
         if (RoslinozernySlimak::iloscRoslinozernychSlimakow == 0)
             std::cout << "Wszystkie roslinozerne slimaki nie zyja!" << std::endl;
         else {
@@ -169,6 +177,7 @@ public:
                     zjadane = zjadane->next;
                 std::cout << "zjadane: " << zjadane->nazwa <<", " << zjadane->wielkosc << std::endl;
             }while(zjadane->nazwa != "roslinozernySlimak");
+//            delete zjadane;
         }
     }
 };
@@ -209,6 +218,7 @@ int main(int argc, char *argv[])
             temp = temp->next;
         }
     }
+
     return 0;
     return a.exec();
 }
