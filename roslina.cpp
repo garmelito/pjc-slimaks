@@ -19,8 +19,10 @@ Roslina::~Roslina() {
     Roslina::iloscRoslin--;
     Stworzenie::iloscStworzen--;
 
-    previous->next = next;
-    next->previous = previous;
+    if (previous != nullptr)
+        previous->next = next;
+    if (next != nullptr)
+        next->previous = previous;
 }
 
 void Roslina::rosnij() {

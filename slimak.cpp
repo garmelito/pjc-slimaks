@@ -1,10 +1,6 @@
 #include "slimak.h"
 #include "roslina.h"
 
-Slimak::~Slimak() {
-    std::cout << "Wywolano destruktor slimaka" << std::endl;
-}
-
 void Slimak::rosnij() {
     wielkosc = wielkosc * 1.1;
 }
@@ -37,8 +33,10 @@ RoslinozernySlimak::~RoslinozernySlimak() {
     RoslinozernySlimak::iloscRoslinozernychSlimakow--;
     Stworzenie::iloscStworzen--;
 
-    previous->next = next;
-    next->previous = previous;
+    if (previous != nullptr)
+        previous->next = next;
+    if (next != nullptr)
+        next->previous = previous;
 }
 
 void RoslinozernySlimak::rozmnazajSie() {
@@ -56,9 +54,9 @@ void RoslinozernySlimak::zjedz() {
             zjadane = head;
             for (int i = 0; i < zjadany; i++)
                 zjadane = zjadane->next;
-            std::cout << "zjadane: " << zjadane->nazwa <<", " << zjadane->wielkosc << std::endl;
+            std::cout << "Ilosc roslin: " << Roslina::iloscRoslin << ", Roslinozerny slimak probuje zjesc: " << zjadane->nazwa <<", " << zjadane->wielkosc << std::endl;
         }while(zjadane->nazwa != "roslina");
-//            delete zjadane;
+        delete zjadane;
     }
 }
 
@@ -89,16 +87,17 @@ void DrapieznySlimak::rozmnazajSie(){
 
 void DrapieznySlimak::zjedz() {
     if (RoslinozernySlimak::iloscRoslinozernychSlimakow == 0)
-        std::cout << "Wszystkie roslinozerne slimaki nie zyja!" << std::endl;
+        std::cout << "Wszystkie roslinozerne slimaki nie zyja! " << std::endl;
     else {
+        int zjadany;
         Stworzenie* zjadane;
         do{
-            int zjadany = rand() % iloscStworzen;
+            zjadany = rand() % iloscStworzen;
             zjadane = head;
             for (int i = 0; i < zjadany; i++)
                 zjadane = zjadane->next;
-            std::cout << "zjadane: " << zjadane->nazwa <<", " << zjadane->wielkosc << std::endl;
+            std::cout << "Ilosc roslinozernych slimakow: " << RoslinozernySlimak::iloscRoslinozernychSlimakow << ", Drapiezny slimak probuje zjesc: " << zjadane->nazwa <<", " << zjadane->wielkosc << std::endl;
         }while(zjadane->nazwa != "roslinozernySlimak");
-//            delete zjadane;
+        delete zjadane;
     }
 }
