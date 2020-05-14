@@ -9,32 +9,44 @@
 #include <QApplication>
 
 std::deque<Stworzenie*> stworzenia;
-int Roslina::iloscRoslin;
-int RoslinozernySlimak::iloscRoslinozernychSlimakow;
-int DrapieznySlimak::iloscDrapieznychSlimakow;
-int Stworzenie::iloscStworzen;
+std::deque<Stworzenie*> rosliny;
+std::deque<Stworzenie*> roslinozerneSlimaki;
+std::deque<Stworzenie*> drapiezneSlimaki;
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
-    //muszę dodać zabijanie roslin przez roslinozerne slimaki i roslinozernych slimakow przez drapiezne
-    //potrzebuje umierania ze starosci, ale tez smierci przez zjedzenie
-
     srand(time(nullptr));
-    Roslina::iloscRoslin = 0;
-    RoslinozernySlimak::iloscRoslinozernychSlimakow = 0;
-    DrapieznySlimak::iloscDrapieznychSlimakow = 0;
-    Stworzenie::iloscStworzen = 0;
 
-    stworzenia.push_back(new Roslina);
-    stworzenia.push_back(new RoslinozernySlimak);
-    stworzenia.push_back(new DrapieznySlimak);
+    {Stworzenie* nowe = new Roslina;
+    stworzenia.push_back(nowe);
+    rosliny.push_back(nowe);}
+    {Stworzenie* nowe = new RoslinozernySlimak;
+    stworzenia.push_back(nowe);
+    roslinozerneSlimaki.push_back(nowe);}
+    {Stworzenie* nowe = new DrapieznySlimak;
+    stworzenia.push_back(nowe);
+    drapiezneSlimaki.push_back(nowe);}
 
-    for (size_t i = 0; i < stworzenia.size(); i++) {
-        std::cout << stworzenia[i]->nazwa  << " " << stworzenia[i]->wielkosc;
-        stworzenia[i]->przezyjDzien();
+    for (int i = 0; i < 2; i++) {
+        std::cout << "Dzien " << i << std::endl;
+        for (size_t i = 0; i < stworzenia.size(); i++) {
+            std::cout << stworzenia[i]->nazwa  << " " << stworzenia[i]->wielkosc << std::endl;
+            stworzenia[i]->przezyjDzien();
+        }
+
+        stworzenia.clear();
+        for (size_t i = 0; i < rosliny.size(); i++) {
+            stworzenia.push_back(rosliny[i]);
+        }
+        for (size_t i = 0; i < roslinozerneSlimaki.size(); i++) {
+            stworzenia.push_back(roslinozerneSlimaki[i]);
+        }
+        for (size_t i = 0; i < drapiezneSlimaki.size(); i++) {
+            stworzenia.push_back(drapiezneSlimaki[i]);
+        }
     }
+
 
     return 0;
     return a.exec();

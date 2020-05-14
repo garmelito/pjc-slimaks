@@ -3,19 +3,15 @@
 #include <deque>
 
 extern std::deque<Stworzenie*> stworzenia;
+extern std::deque<Stworzenie*> rosliny;
 
 Roslina::Roslina() {
     nazwa = "roslina";
     wielkosc = 1;
-
-    iloscRoslin++;
-    iloscStworzen++;
 }
 
 Roslina::~Roslina() {
     std::cout << "Wywolano destruktor rosliny" << std::endl;
-    Roslina::iloscRoslin--;
-    Stworzenie::iloscStworzen--;
 }
 
 void Roslina::rosnij() {
@@ -23,7 +19,8 @@ void Roslina::rosnij() {
 }
 
 void Roslina::rozmnazajSie() {
-    stworzenia.push_back(new Roslina);
+    Stworzenie* nowe = new Roslina;
+    rosliny.push_back(nowe);
 }
 
 void Roslina::przezyjDzien() {

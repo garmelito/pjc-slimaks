@@ -19,8 +19,6 @@ public:
 
 class RoslinozernySlimak : public Slimak {
 public:
-    static int iloscRoslinozernychSlimakow;
-
     RoslinozernySlimak();
     ~RoslinozernySlimak();
     void rozmnazajSie();
@@ -29,8 +27,6 @@ public:
 
 class DrapieznySlimak : public Slimak {
 public:
-    static int iloscDrapieznychSlimakow;
-
     DrapieznySlimak();
     ~DrapieznySlimak();
     void rozmnazajSie();

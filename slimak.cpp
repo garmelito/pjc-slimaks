@@ -4,6 +4,8 @@
 #include <deque>
 
 extern std::deque<Stworzenie*> stworzenia;
+extern std::deque<Stworzenie*> roslinozerneSlimaki;
+extern std::deque<Stworzenie*> drapiezneSlimaki;
 
 void Slimak::rosnij() {
     wielkosc = wielkosc * 1.1;
@@ -23,18 +25,15 @@ void Slimak::przezyjDzien() {
 RoslinozernySlimak::RoslinozernySlimak() {
     nazwa = "roslinozernySlimak";
     wielkosc = 10;
-    iloscRoslinozernychSlimakow++;
-    iloscStworzen++;
 }
 
 RoslinozernySlimak::~RoslinozernySlimak() {
     std::cout << "Wywolano destruktor roslinozernego slimaka" << std::endl;
-    RoslinozernySlimak::iloscRoslinozernychSlimakow--;
-    Stworzenie::iloscStworzen--;
 }
 
 void RoslinozernySlimak::rozmnazajSie() {
-    stworzenia.push_back(new RoslinozernySlimak);
+    Stworzenie* nowe = new RoslinozernySlimak;
+    roslinozerneSlimaki.push_back(nowe);
 }
 
 void RoslinozernySlimak::zjedz() {
@@ -57,18 +56,15 @@ void RoslinozernySlimak::zjedz() {
 DrapieznySlimak::DrapieznySlimak() {
     nazwa = "drapieznySlimak";
     wielkosc = 10;
-    iloscDrapieznychSlimakow++;
-    iloscStworzen++;
 }
 
 DrapieznySlimak::~DrapieznySlimak(){
     std::cout << "Wywolano destruktor drapieznego slimaka" << std::endl;
-    DrapieznySlimak::iloscDrapieznychSlimakow--;
-    Stworzenie::iloscStworzen--;
 }
 
 void DrapieznySlimak::rozmnazajSie(){
-    stworzenia.push_back(new DrapieznySlimak);
+    Stworzenie* nowe = new DrapieznySlimak;
+    drapiezneSlimaki.push_back(nowe);
 }
 
 void DrapieznySlimak::zjedz() {

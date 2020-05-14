@@ -5,7 +5,6 @@
 
 class Roslina : public Stworzenie {
 public:
-    static int iloscRoslin;
 
     Roslina();
     ~Roslina();

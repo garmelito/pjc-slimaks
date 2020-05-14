@@ -7,7 +7,6 @@ class Stworzenie {
 public:
     std::string nazwa;
     int wielkosc;
-    static int iloscStworzen;
 
     virtual void rosnij() = 0;
     virtual void rozmnazajSie() = 0;
