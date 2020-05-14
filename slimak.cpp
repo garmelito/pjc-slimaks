@@ -4,6 +4,7 @@
 #include <deque>
 
 extern std::deque<Stworzenie*> stworzenia;
+extern std::deque<Stworzenie*> rosliny;
 extern std::deque<Stworzenie*> roslinozerneSlimaki;
 extern std::deque<Stworzenie*> drapiezneSlimaki;
 
@@ -37,20 +38,14 @@ void RoslinozernySlimak::rozmnazajSie() {
 }
 
 void RoslinozernySlimak::zjedz() {
-//    if (Roslina::iloscRoslin == 0)
-//        std::cout << "Wszystkie rosliny zostaly zniszczone! " << std::endl;
-//    else {
-//        int zjadany;
-//        Stworzenie* zjadane;
-//        do{
-//            zjadany = rand() % iloscStworzen;
-//            zjadane = head;
-//            for (int i = 0; i < zjadany; i++)
-//                zjadane = zjadane->next;
-//            std::cout << "Ilosc roslin: " << Roslina::iloscRoslin << ", Roslinozerny slimak probuje zjesc: " << zjadane->nazwa <<", " << zjadane->wielkosc << std::endl;
-//        }while(zjadane->nazwa != "roslina");
-//        delete zjadane;
-//    }
+    if (rosliny.size() == 0)
+        std::cout << "Wszystkie rosliny zostaly zniszczone! " << std::endl;
+    else {
+        int zjadany = rand() % rosliny.size();
+        Stworzenie* zjadane = rosliny[zjadany];
+        std::cout << "Ilosc roslin: " << rosliny.size() << ", Roslinozerny slimak zjada: " << zjadane->nazwa <<", " << zjadane->wielkosc << std::endl;
+        rosliny.erase(rosliny.begin()+zjadany);
+    }
 }
 
 DrapieznySlimak::DrapieznySlimak() {
@@ -68,18 +63,12 @@ void DrapieznySlimak::rozmnazajSie(){
 }
 
 void DrapieznySlimak::zjedz() {
-//    if (RoslinozernySlimak::iloscRoslinozernychSlimakow == 0)
-//        std::cout << "Wszystkie roslinozerne slimaki nie zyja! " << std::endl;
-//    else {
-//        int zjadany;
-//        Stworzenie* zjadane;
-//        do{
-//            zjadany = rand() % iloscStworzen;
-//            zjadane = head;
-//            for (int i = 0; i < zjadany; i++)
-//                zjadane = zjadane->next;
-//            std::cout << "Ilosc roslinozernych slimakow: " << RoslinozernySlimak::iloscRoslinozernychSlimakow << ", Drapiezny slimak probuje zjesc: " << zjadane->nazwa <<", " << zjadane->wielkosc << std::endl;
-//        }while(zjadane->nazwa != "roslinozernySlimak");
-//        delete zjadane;
-//    }
+    if (roslinozerneSlimaki.size() == 0)
+        std::cout << "Wszystkie roslinozerne slimaki zostaly zniszczone! " << std::endl;
+    else {
+        int zjadany = rand() % roslinozerneSlimaki.size();
+        Stworzenie* zjadane = roslinozerneSlimaki[zjadany];
+        std::cout << "Ilosc roslin: " << roslinozerneSlimaki.size() << ", Roslinozerny slimak zjada: " << zjadane->nazwa <<", " << zjadane->wielkosc << std::endl;
+        roslinozerneSlimaki.erase(roslinozerneSlimaki.begin()+zjadany);
+    }
 }
