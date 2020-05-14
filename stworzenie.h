@@ -5,7 +5,6 @@
 
 class Stworzenie {
 public:
-    std::string nazwa;
     int wielkosc;
 
     virtual void rosnij() = 0;
@@ -13,7 +12,7 @@ public:
     virtual void przezyjDzien() = 0;
 
     virtual ~Stworzenie() {
-        std::cout << "Wywolano destruktor Stowrzenia" << std::endl;
+//        std::cout << "Wywolano destruktor Stowrzenia" << std::endl;
     }
 };
 

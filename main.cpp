@@ -13,13 +13,19 @@ std::deque<Stworzenie*> rosliny;
 std::deque<Stworzenie*> roslinozerneSlimaki;
 std::deque<Stworzenie*> drapiezneSlimaki;
 
-bool isInside(Stworzenie* sprawdzane, std::deque<Stworzenie*> gatunek)
-{
+bool isInside(Stworzenie* sprawdzane, std::deque<Stworzenie*> gatunek) {
     for (size_t i = 0; i < gatunek.size(); i++) {
         if (sprawdzane == gatunek[i])
             return true;
     }
     return false;
+}
+
+size_t getIterator(Stworzenie* szukane, std::deque<Stworzenie*> gatunek) {
+    for (size_t i = 0; i < gatunek.size(); i++) {
+        if (szukane == gatunek[i])
+            return i;
+    }
 }
 
 int main(int argc, char *argv[])
@@ -39,9 +45,10 @@ int main(int argc, char *argv[])
 
     //kolejene dni
     for (int i = 0; i < 2; i++) {
-        std::cout << "Dzien " << i << std::endl;
+        std::cout << "Dzien " << i << ", roslin: " << rosliny.size() << ", roslinozernych slimakow: " << roslinozerneSlimaki.size()
+                  << ", drapieznych slimakow: " <<drapiezneSlimaki.size() << std::endl;
         for (size_t i = 0; i < stworzenia.size(); i++) {
-            std::cout << stworzenia[i]->nazwa  << " " << stworzenia[i]->wielkosc << std::endl;
+//            std::cout << stworzenia[i]->nazwa  << " " << stworzenia[i]->wielkosc << std::endl;
             stworzenia[i]->przezyjDzien();
         }
 

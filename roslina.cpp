@@ -6,12 +6,11 @@ extern std::deque<Stworzenie*> stworzenia;
 extern std::deque<Stworzenie*> rosliny;
 
 Roslina::Roslina() {
-    nazwa = "roslina";
     wielkosc = 1;
 }
 
 Roslina::~Roslina() {
-    std::cout << "Wywolano destruktor rosliny" << std::endl;
+//    std::cout << "Wywolano destruktor rosliny" << std::endl;
 }
 
 void Roslina::rosnij() {

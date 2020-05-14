@@ -8,13 +8,13 @@ public:
     int wiek;
 
     virtual ~Slimak() {
-        std::cout << "Wywolano destruktor slimaka" << std::endl;
+//        std::cout << "Wywolano destruktor slimaka" << std::endl;
     }
     void rosnij();
     virtual void rozmnazajSie() = 0;
     virtual void zjedz() = 0;
-    void umieraj();
     void przezyjDzien();
+    virtual void umieraj() = 0;
 };
 
 class RoslinozernySlimak : public Slimak {
@@ -23,6 +23,7 @@ public:
     ~RoslinozernySlimak();
     void rozmnazajSie();
     void zjedz();
+    void umieraj();
 };
 
 class DrapieznySlimak : public Slimak {
@@ -31,6 +32,7 @@ public:
     ~DrapieznySlimak();
     void rozmnazajSie();
     void zjedz();
+    void umieraj();
 };
 
 #endif // SLIMAK_H
