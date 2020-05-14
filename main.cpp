@@ -4,14 +4,15 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <deque>
 #include <iostream>
 #include <QApplication>
 
+std::deque<Stworzenie*> stworzenia;
 int Roslina::iloscRoslin;
 int RoslinozernySlimak::iloscRoslinozernychSlimakow;
 int DrapieznySlimak::iloscDrapieznychSlimakow;
 int Stworzenie::iloscStworzen;
-Stworzenie* Stworzenie::head;
 
 int main(int argc, char *argv[])
 {
@@ -26,22 +27,13 @@ int main(int argc, char *argv[])
     DrapieznySlimak::iloscDrapieznychSlimakow = 0;
     Stworzenie::iloscStworzen = 0;
 
-    //Stworzenie* head = nullptr;
-    Stworzenie::head = nullptr;
+    stworzenia.push_back(new Roslina);
+    stworzenia.push_back(new RoslinozernySlimak);
+    stworzenia.push_back(new DrapieznySlimak);
 
-    {Stworzenie* nowe = new RoslinozernySlimak();}
-    {Stworzenie* nowe = new Roslina();}
-    {Stworzenie* nowe = new DrapieznySlimak();}
-
-    for (int i=0; i<2; i++) {
-        Stworzenie* temp = Stworzenie::head;
-        std::cout << "Dzien " << i << std::endl;
-        while (temp != nullptr) {
-            std::cout << temp->nazwa <<", " << temp->wielkosc << std::endl;
-            temp->przezyjDzien();
-            std::cout << temp->nazwa <<", " << temp->wielkosc << std::endl;
-            temp = temp->next;
-        }
+    for (size_t i = 0; i < stworzenia.size(); i++) {
+        std::cout << stworzenia[i]->nazwa  << " " << stworzenia[i]->wielkosc;
+        stworzenia[i]->przezyjDzien();
     }
 
     return 0;

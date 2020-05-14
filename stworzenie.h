@@ -7,9 +7,6 @@ class Stworzenie {
 public:
     std::string nazwa;
     int wielkosc;
-    static Stworzenie* head;
-    Stworzenie* previous;
-    Stworzenie* next;
     static int iloscStworzen;
 
     virtual void rosnij() = 0;
