@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     int poczatkowaIloscRoslin;
     std::cout << "Ile roslin ma byc na poczatku? ";
     std::cin >> poczatkowaIloscRoslin;
-    for (int i = 0; i < poczatkowaIloscRoslin; i++) {Stworzenie* nowe = new Roslina;
+    for (int i = 0; i < poczatkowaIloscRoslin; i++) {Stworzenie* nowe = new Roslina(20);
         stworzenia.push_back(nowe);
         rosliny.push_back(nowe);
     }

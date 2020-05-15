@@ -11,14 +11,13 @@ extern std::deque<Stworzenie*> drapiezneSlimaki;
 extern size_t getIterator (Stworzenie* szukane, std::deque<Stworzenie*> gatunek);
 
 void Slimak::rosnij() {
-    wielkosc = wielkosc * 1.1;
     wiek++;
 }
 
 void Slimak::przezyjDzien() {
     rosnij();
-    rozmnazajSie();
-    zjedz();
+    if (zjedz() && wiek > 5 && wiek < 8 && rand() % 10 == 0)
+        rozmnazajSie();
     umieraj();
 }
 
@@ -36,14 +35,24 @@ void RoslinozernySlimak::rozmnazajSie() {
     roslinozerneSlimaki.push_back(nowe);
 }
 
-void RoslinozernySlimak::zjedz() {
-    if (rosliny.size() == 0)
-        std::cout << "Wszystkie rosliny zostaly zniszczone! " << std::endl;
+bool RoslinozernySlimak::zjedz() {
+    if (rosliny.size() == 0) {
+//        std::cout << "Wszystkie rosliny zostaly zniszczone! " << std::endl;
+        return false;
+    }
     else {
         int zjadany = rand() % rosliny.size();
-//        Stworzenie* zjadane = rosliny[zjadany];
-//        std::cout << "Ilosc roslin: " << rosliny.size() << ", Roslinozerny slimak zjada: " << zjadane->nazwa <<", " << zjadane->wielkosc << std::endl;
-        rosliny.erase(rosliny.begin()+zjadany);
+        Stworzenie* zjadane = rosliny[zjadany];
+        int wielkoscGryza = wielkosc / 3;
+        if (zjadane->wielkosc > wielkoscGryza) {
+            wielkosc += wielkoscGryza / 3;
+            zjadane->wielkosc -= wielkoscGryza;
+        }
+        else {
+            wielkosc += zjadane->wielkosc / 3;
+            rosliny.erase(rosliny.begin()+zjadany);
+        }
+        return true;
     }
 }
 
@@ -66,14 +75,21 @@ void DrapieznySlimak::rozmnazajSie(){
     drapiezneSlimaki.push_back(nowe);
 }
 
-void DrapieznySlimak::zjedz() {
-    if (roslinozerneSlimaki.size() == 0)
-        std::cout << "Wszystkie roslinozerne slimaki zostaly zniszczone! " << std::endl;
+bool DrapieznySlimak::zjedz() {
+    if (roslinozerneSlimaki.size() == 0) {
+//        std::cout << "Wszystkie roslinozerne slimaki zostaly zniszczone! " << std::endl;
+        return false;
+    }
     else {
         int zjadany = rand() % roslinozerneSlimaki.size();
-//        Stworzenie* zjadane = roslinozerneSlimaki[zjadany];
-//        std::cout << "Ilosc roslinozernych slimakow: " << roslinozerneSlimaki.size() << ", Drapiezny slimak zjada: " << zjadane->nazwa <<", " << zjadane->wielkosc << std::endl;
+        Stworzenie* zjadane = roslinozerneSlimaki[zjadany];
+        int wielkoscGryza = wielkosc / 3;
+        if (zjadane->wielkosc > wielkoscGryza)
+            wielkosc += wielkoscGryza / 3;
+        else
+            wielkosc += zjadane->wielkosc / 3;
         roslinozerneSlimaki.erase(roslinozerneSlimaki.begin()+zjadany);
+        return true;
     }
 }
 

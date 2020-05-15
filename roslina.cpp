@@ -9,6 +9,11 @@ Roslina::Roslina() {
     wielkosc = 1;
 }
 
+Roslina::Roslina(int wielkosc)
+{
+    this->wielkosc = wielkosc;
+}
+
 Roslina::~Roslina() {
 //    std::cout << "Wywolano destruktor rosliny" << std::endl;
 }
@@ -24,5 +29,6 @@ void Roslina::rozmnazajSie() {
 
 void Roslina::przezyjDzien() {
     rosnij();
-    rozmnazajSie();
+    if (wielkosc > 40 && rand() % 10 == 0)
+        rozmnazajSie();
 }

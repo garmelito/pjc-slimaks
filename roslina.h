@@ -7,6 +7,7 @@ class Roslina : public Stworzenie {
 public:
 
     Roslina();
+    Roslina(int wielkosc);
     ~Roslina();
     void rosnij();
     void rozmnazajSie();

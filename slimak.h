@@ -12,7 +12,7 @@ public:
     }
     void rosnij();
     virtual void rozmnazajSie() = 0;
-    virtual void zjedz() = 0;
+    virtual bool zjedz() = 0;
     void przezyjDzien();
     virtual void umieraj() = 0;
 };
@@ -22,7 +22,7 @@ public:
     RoslinozernySlimak();
     ~RoslinozernySlimak();
     void rozmnazajSie();
-    void zjedz();
+    bool zjedz();
     void umieraj();
 };
 
@@ -31,7 +31,7 @@ public:
     DrapieznySlimak();
     ~DrapieznySlimak();
     void rozmnazajSie();
-    void zjedz();
+    bool zjedz();
     void umieraj();
 };
 
