@@ -6,7 +6,8 @@ CONFIG -= qt
 SOURCES += \
         main.cpp \
         roslina.cpp \
-        slimak.cpp
+        slimak.cpp \
+        stworzenie.cpp
 
 HEADERS += \
     roslina.h \

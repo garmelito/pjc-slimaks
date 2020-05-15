@@ -6,7 +6,7 @@ extern std::deque<Stworzenie*> stworzenia;
 extern std::deque<Stworzenie*> rosliny;
 
 Roslina::Roslina() {
-    wielkosc = 1;
+    wielkosc = POCZATKOWA_WIELKOSC;
 }
 
 Roslina::Roslina(int wielkosc)
@@ -19,7 +19,7 @@ Roslina::~Roslina() {
 }
 
 void Roslina::rosnij() {
-    wielkosc = wielkosc + 3;
+    wielkosc = wielkosc + PRZYROST;
 }
 
 void Roslina::rozmnazajSie() {
@@ -29,6 +29,6 @@ void Roslina::rozmnazajSie() {
 
 void Roslina::przezyjDzien() {
     rosnij();
-    if (wielkosc > 40 && rand() % 10 == 0)
+    if (wielkosc > WIELKOSC_PRZYZWOLENIA && rand() % PLODNOSC == 0)
         rozmnazajSie();
 }

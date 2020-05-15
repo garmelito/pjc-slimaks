@@ -16,13 +16,13 @@ void Slimak::rosnij() {
 
 void Slimak::przezyjDzien() {
     rosnij();
-    if (zjedz() && wiek > 5 && wiek < 8 && rand() % 10 == 0)
+    if (zjedz() && wiek > WIEK_PRZYZWOLENIA && wiek < WIEK_NIEDOZWOLENIA && rand() % PLODNOSC == 0)
         rozmnazajSie();
     umieraj();
 }
 
 RoslinozernySlimak::RoslinozernySlimak() {
-    wielkosc = 10;
+    wielkosc = WIELKOSC_NOWEGO;
     wiek = 1;
 }
 
@@ -43,13 +43,13 @@ bool RoslinozernySlimak::zjedz() {
     else {
         int zjadany = rand() % rosliny.size();
         Stworzenie* zjadane = rosliny[zjadany];
-        int wielkoscGryza = wielkosc / 3;
+        int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
         if (zjadane->wielkosc > wielkoscGryza) {
-            wielkosc += wielkoscGryza / 3;
+            wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
             zjadane->wielkosc -= wielkoscGryza;
         }
         else {
-            wielkosc += zjadane->wielkosc / 3;
+            wielkosc += zjadane->wielkosc / DZIELNIK_PRZYROSTU;
             rosliny.erase(rosliny.begin()+zjadany);
         }
         return true;
@@ -57,12 +57,12 @@ bool RoslinozernySlimak::zjedz() {
 }
 
 void RoslinozernySlimak::umieraj() {
-    if (wiek > 10)
-        roslinozerneSlimaki.erase(roslinozerneSlimaki.begin() + getIterator(this,roslinozerneSlimaki));
+    if (wiek > ZYWOTNOSC)
+        roslinozerneSlimaki.erase(roslinozerneSlimaki.begin() + getIterator(roslinozerneSlimaki));
 }
 
 DrapieznySlimak::DrapieznySlimak() {
-    wielkosc = 10;
+    wielkosc = WIELKOSC_NOWEGO;
     wiek = 1;
 }
 
@@ -83,17 +83,17 @@ bool DrapieznySlimak::zjedz() {
     else {
         int zjadany = rand() % roslinozerneSlimaki.size();
         Stworzenie* zjadane = roslinozerneSlimaki[zjadany];
-        int wielkoscGryza = wielkosc / 3;
+        int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
         if (zjadane->wielkosc > wielkoscGryza)
-            wielkosc += wielkoscGryza / 3;
+            wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
         else
-            wielkosc += zjadane->wielkosc / 3;
+            wielkosc += zjadane->wielkosc / DZIELNIK_PRZYROSTU;
         roslinozerneSlimaki.erase(roslinozerneSlimaki.begin()+zjadany);
         return true;
     }
 }
 
 void DrapieznySlimak::umieraj() {
-    if (wiek > 10)
-        drapiezneSlimaki.erase(drapiezneSlimaki.begin() + getIterator(this,drapiezneSlimaki));
+    if (wiek > ZYWOTNOSC)
+        drapiezneSlimaki.erase(drapiezneSlimaki.begin() + getIterator(drapiezneSlimaki));
 }
