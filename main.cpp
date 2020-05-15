@@ -6,7 +6,6 @@
 #include <ctime>
 #include <deque>
 #include <iostream>
-#include <QApplication>
 
 std::deque<Stworzenie*> stworzenia;
 std::deque<Stworzenie*> rosliny;
@@ -30,21 +29,36 @@ size_t getIterator(Stworzenie* szukane, std::deque<Stworzenie*> gatunek) {
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
     srand(time(nullptr));
 
-    {Stworzenie* nowe = new Roslina;
-    stworzenia.push_back(nowe);
-    rosliny.push_back(nowe);}
-    {Stworzenie* nowe = new RoslinozernySlimak;
-    stworzenia.push_back(nowe);
-    roslinozerneSlimaki.push_back(nowe);}
-    {Stworzenie* nowe = new DrapieznySlimak;
-    stworzenia.push_back(nowe);
-    drapiezneSlimaki.push_back(nowe);}
+    int poczatkowaIloscRoslin;
+    std::cout << "Ile roslin ma byc na poczatku? ";
+    std::cin >> poczatkowaIloscRoslin;
+    for (int i = 0; i < poczatkowaIloscRoslin; i++) {Stworzenie* nowe = new Roslina;
+        stworzenia.push_back(nowe);
+        rosliny.push_back(nowe);
+    }
+    int poczatkowaIloscRoslinozernychSlimakow;
+    std::cout << "Ile roslinozernych slimakow ma byc na poczatku? ";
+    std::cin >> poczatkowaIloscRoslinozernychSlimakow;
+    for (int i = 0; i < poczatkowaIloscRoslinozernychSlimakow; i++) {
+        Stworzenie* nowe = new RoslinozernySlimak;
+        stworzenia.push_back(nowe);
+        roslinozerneSlimaki.push_back(nowe);
+    }
+    int poczatkowaIloscDrapieznychSlimakow;
+    std::cout << "Ile drapieznych slimakow ma byc na poczatku? ";
+    std::cin >> poczatkowaIloscDrapieznychSlimakow;
+    for (int i = 0; i < poczatkowaIloscDrapieznychSlimakow; i++) {
+        Stworzenie* nowe = new DrapieznySlimak;
+        stworzenia.push_back(nowe);
+        drapiezneSlimaki.push_back(nowe);
+    }
 
-    //kolejene dni
-    for (int i = 0; i < 2; i++) {
+    int iloscDni;
+    std::cout <<"Ile dni ma trwac symulacja? ";
+    std::cin >> iloscDni;
+    for (int i = 0; i < iloscDni; i++) {
         std::cout << "Dzien " << i << ", roslin: " << rosliny.size() << ", roslinozernych slimakow: " << roslinozerneSlimaki.size()
                   << ", drapieznych slimakow: " <<drapiezneSlimaki.size() << std::endl;
         for (size_t i = 0; i < stworzenia.size(); i++) {
@@ -77,5 +91,4 @@ int main(int argc, char *argv[])
 
 
     return 0;
-    return a.exec();
 }
