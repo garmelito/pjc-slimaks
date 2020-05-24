@@ -22,7 +22,7 @@ void Roslina::rosnij() {
 
 void Roslina::rozmnazajSie() {
     Stworzenie* nowe = new Roslina;
-    symulacja->rosliny.push_back(nowe);
+    symulacja->rosliny->push_back(nowe);
 }
 
 void Roslina::przezyjDzien() {
