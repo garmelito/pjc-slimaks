@@ -1,9 +1,7 @@
 #include "roslina.h"
+#include "symulacja.h"
 
-#include <deque>
-
-extern std::deque<Stworzenie*> stworzenia;
-extern std::deque<Stworzenie*> rosliny;
+extern Symulacja* symulacja;
 
 Roslina::Roslina() {
     wielkosc = POCZATKOWA_WIELKOSC;
@@ -24,7 +22,7 @@ void Roslina::rosnij() {
 
 void Roslina::rozmnazajSie() {
     Stworzenie* nowe = new Roslina;
-    rosliny.push_back(nowe);
+    symulacja->rosliny.push_back(nowe);
 }
 
 void Roslina::przezyjDzien() {

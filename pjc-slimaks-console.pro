@@ -12,4 +12,5 @@ SOURCES += \
 HEADERS += \
     roslina.h \
     slimak.h \
-    stworzenie.h
+    stworzenie.h \
+    symulacja.h
