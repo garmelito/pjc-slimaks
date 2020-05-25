@@ -18,7 +18,8 @@ int main(int argc, char *argv[])
     int poczatkowaIloscRoslin;
     std::cout << "Ile roslin ma byc na poczatku? ";
     std::cin >> poczatkowaIloscRoslin;
-    for (int i = 0; i < poczatkowaIloscRoslin; i++) {Stworzenie* nowe = new Roslina(WIELKOSC_PIERWSZYCH_ROSLIN);
+    for (int i = 0; i < poczatkowaIloscRoslin; i++) {
+        Stworzenie* nowe = new Roslina(WIELKOSC_PIERWSZYCH_ROSLIN);
         symulacja->stworzenia->push_back(nowe);
         symulacja->rosliny->push_back(nowe);
     }
@@ -46,15 +47,13 @@ int main(int argc, char *argv[])
         std::cout << "Dzien " << i << ", roslin: " << symulacja->rosliny->size() << ", roslinozernych slimakow: " << symulacja->roslinozerneSlimaki->size()
                   << ", drapieznych slimakow: " <<symulacja->drapiezneSlimaki->size() << std::endl;
         for (size_t i = 0; i < symulacja->stworzenia->size(); i++) {
-//            std::cout << symulacja->stworzenia[i]->nazwa  << " " << symulacja->stworzenia[i]->wielkosc << std::endl;
-//            symulacja->stworzenia[i]->przezyjDzien();
-            symulacja->stworzenia[i]->przezyjDzien();
+            symulacja->stworzenia->operator[](i)->przezyjDzien();
         }
 
         //usuwanie zmarlych
         for (size_t i = 0; i < symulacja->stworzenia->size(); i++) {
-            if (!(symulacja->stworzenia[i]->isInside(symulacja->rosliny) || symulacja->stworzenia[i]->isInside(symulacja->roslinozerneSlimaki) || symulacja->stworzenia[i]->isInside(symulacja->drapiezneSlimaki))) {
-                Stworzenie* temp = symulacja->stworzenia[i];
+            if (!(symulacja->stworzenia->operator[](i)->isInside(symulacja->rosliny) || symulacja->stworzenia->operator[](i)->isInside(symulacja->roslinozerneSlimaki) || symulacja->stworzenia->operator[](i)->isInside(symulacja->drapiezneSlimaki))) {
+                Stworzenie* temp = symulacja->stworzenia->operator[](i);
                 symulacja->stworzenia->erase(symulacja->stworzenia->begin()+i);
                 delete temp;
                 i--;
@@ -64,13 +63,13 @@ int main(int argc, char *argv[])
         //przepisywanie zywych z gatunkow do stworzen, pamietajmy o nowonarodzonych
         symulacja->stworzenia->clear();
         for (size_t i = 0; i < symulacja->rosliny->size(); i++) {
-            symulacja->stworzenia->push_back(symulacja->rosliny[i]);
+            symulacja->stworzenia->push_back(symulacja->rosliny->operator[](i));
         }
         for (size_t i = 0; i < symulacja->roslinozerneSlimaki->size(); i++) {
-            symulacja->stworzenia->push_back(symulacja->roslinozerneSlimaki[i]);
+            symulacja->stworzenia->push_back(symulacja->roslinozerneSlimaki->operator[](i));
         }
         for (size_t i = 0; i < symulacja->drapiezneSlimaki->size(); i++) {
-            symulacja->stworzenia->push_back(symulacja->drapiezneSlimaki[i]);
+            symulacja->stworzenia->push_back(symulacja->drapiezneSlimaki->operator[](i));
         }
     }
 

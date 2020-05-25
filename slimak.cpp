@@ -36,7 +36,7 @@ bool RoslinozernySlimak::zjedz() {
     }
     else {
         int zjadany = rand() % symulacja->rosliny->size();
-        Stworzenie* zjadane = symulacja->rosliny[zjadany];
+        Stworzenie* zjadane = symulacja->rosliny->operator[](zjadany);
         int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
         if (zjadane->wielkosc > wielkoscGryza) {
             wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
@@ -76,7 +76,7 @@ bool DrapieznySlimak::zjedz() {
     }
     else {
         int zjadany = rand() % symulacja->roslinozerneSlimaki->size();
-        Stworzenie* zjadane = symulacja->roslinozerneSlimaki[zjadany];
+        Stworzenie* zjadane = symulacja->roslinozerneSlimaki->operator[](zjadany);
         int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
         if (zjadane->wielkosc > wielkoscGryza)
             wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;

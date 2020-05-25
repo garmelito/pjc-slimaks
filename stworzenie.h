@@ -3,6 +3,7 @@
 
 #include <deque>
 #include <iostream>
+#include <memory>
 
 class Stworzenie {
 public:
@@ -15,8 +16,8 @@ public:
     virtual ~Stworzenie() {
 //        std::cout << "Wywolano destruktor Stowrzenia" << std::endl;
     }
-    bool isInside(std::deque<Stworzenie*> gatunek);
-    size_t getIterator(std::deque<Stworzenie*> gatunek);
+    bool isInside(std::shared_ptr<std::deque<Stworzenie*>> gatunek);
+    size_t getIterator(std::shared_ptr<std::deque<Stworzenie*>> gatunek);
 };
 
 #endif // STWORZENIE_H
