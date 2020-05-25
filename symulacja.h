@@ -12,6 +12,7 @@ public:
     std::shared_ptr<std::deque<Stworzenie*>> rosliny;
     std::shared_ptr<std::deque<Stworzenie*>> roslinozerneSlimaki;
     std::shared_ptr<std::deque<Stworzenie*>> drapiezneSlimaki;
+    Symulacja();
 
 };
 

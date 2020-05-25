@@ -7,7 +7,7 @@
 #include <ctime>
 #include <iostream>
 
-Symulacja* symulacja = new Symulacja;
+Symulacja* symulacja = new Symulacja();
 
 int main(int argc, char *argv[])
 {

@@ -7,7 +7,8 @@ SOURCES += \
         main.cpp \
         roslina.cpp \
         slimak.cpp \
-        stworzenie.cpp
+        stworzenie.cpp \
+        symulacja.cpp
 
 HEADERS += \
     roslina.h \
