@@ -2,6 +2,9 @@
 #include "roslina.h"
 #include "symulacja.h"
 
+#include <memory>
+#include <deque>
+
 extern Symulacja* symulacja;
 
 void Slimak::rosnij() {
@@ -15,9 +18,11 @@ void Slimak::przezyjDzien() {
     umieraj();
 }
 
-RoslinozernySlimak::RoslinozernySlimak() {
+RoslinozernySlimak::RoslinozernySlimak(std::shared_ptr<std::deque<Stworzenie*>> pozywienie) {
     wielkosc = WIELKOSC_NOWEGO;
     wiek = 1;
+    this->pozywienie = pozywienie;
+    mojGatunek = symulacja->roslinozerneSlimaki;
 }
 
 RoslinozernySlimak::~RoslinozernySlimak() {
@@ -25,18 +30,19 @@ RoslinozernySlimak::~RoslinozernySlimak() {
 }
 
 void RoslinozernySlimak::rozmnazajSie() {
-    Stworzenie* nowe = new RoslinozernySlimak;
-    symulacja->roslinozerneSlimaki->push_back(nowe);
+    Stworzenie* nowe = new RoslinozernySlimak(pozywienie);
+    //TODO
+//    symulacja->roslinozerneSlimaki->push_back(nowe);
 }
 
 bool RoslinozernySlimak::zjedz() {
-    if (symulacja->rosliny->size() == 0) {
+    if (pozywienie->size() == 0) {
 //        std::cout << "Wszystkie symulacja->rosliny zostaly zniszczone! " << std::endl;
         return false;
     }
     else {
-        int zjadany = rand() % symulacja->rosliny->size();
-        Stworzenie* zjadane = symulacja->rosliny->operator[](zjadany);
+        int zjadany = rand() % pozywienie->size();
+        Stworzenie* zjadane = pozywienie->operator[](zjadany);
         int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
         if (zjadane->wielkosc > wielkoscGryza) {
             wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
@@ -44,7 +50,7 @@ bool RoslinozernySlimak::zjedz() {
         }
         else {
             wielkosc += zjadane->wielkosc / DZIELNIK_PRZYROSTU;
-            symulacja->rosliny->erase(symulacja->rosliny->begin()+zjadany);
+            pozywienie->erase(pozywienie->begin()+zjadany);
         }
         return true;
     }

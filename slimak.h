@@ -2,6 +2,7 @@
 #define SLIMAK_H
 
 #include "stworzenie.h"
+#include "symulacja.h"
 
 class Slimak : public Stworzenie {
 public:
@@ -26,11 +27,13 @@ public:
 
 class RoslinozernySlimak : public Slimak {
 private:
+    std::shared_ptr<std::deque<Stworzenie*>> pozywienie;
+    std::shared_ptr<std::deque<Stworzenie*>> mojGatunek;
     void rozmnazajSie();
     bool zjedz();
     void umieraj();
 public:
-    RoslinozernySlimak();
+    RoslinozernySlimak(std::shared_ptr<std::deque<Stworzenie*>> pozywienie);
     ~RoslinozernySlimak();
 };
 
