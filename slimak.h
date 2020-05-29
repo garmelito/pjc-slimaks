@@ -6,9 +6,7 @@
 class Slimak : public Stworzenie {
 public:
     int wiek;
-    static const int WIEK_PRZYZWOLENIA = 5;
-    static const int WIEK_NIEDOZWOLENIA = 8;
-    static const int PLODNOSC = 10;
+    static const int PLODNOSC = 5;
     static const int WIELKOSC_NOWEGO = 10;
     static const int DZIELNIK_GRYZA = 3;
     static const int DZIELNIK_PRZYROSTU = 3;

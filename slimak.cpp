@@ -10,7 +10,7 @@ void Slimak::rosnij() {
 
 void Slimak::przezyjDzien() {
     rosnij();
-    if (zjedz() && wiek > WIEK_PRZYZWOLENIA && wiek < WIEK_NIEDOZWOLENIA && rand() % PLODNOSC == 0)
+    if (zjedz() && rand() % PLODNOSC == 0)
         rozmnazajSie();
     umieraj();
 }
@@ -43,8 +43,8 @@ bool RoslinozernySlimak::zjedz() {
             zjadane->wielkosc -= wielkoscGryza;
         }
         else {
-            wielkosc += zjadane->wielkosc / DZIELNIK_PRZYROSTU;
-            symulacja->rosliny.erase(symulacja->rosliny.begin()+zjadany);
+            wielkosc += (zjadane->wielkosc / DZIELNIK_PRZYROSTU);
+            symulacja->rosliny.erase(symulacja->rosliny.begin() + zjadany);
         }
         return true;
     }
@@ -81,8 +81,8 @@ bool DrapieznySlimak::zjedz() {
         if (zjadane->wielkosc > wielkoscGryza)
             wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
         else
-            wielkosc += zjadane->wielkosc / DZIELNIK_PRZYROSTU;
-        symulacja->roslinozerneSlimaki.erase(symulacja->roslinozerneSlimaki.begin()+zjadany);
+            wielkosc += (zjadane->wielkosc / DZIELNIK_PRZYROSTU);
+        symulacja->roslinozerneSlimaki.erase(symulacja->roslinozerneSlimaki.begin() + zjadany);
         return true;
     }
 }

@@ -7,11 +7,6 @@ Roslina::Roslina() {
     wielkosc = POCZATKOWA_WIELKOSC;
 }
 
-Roslina::Roslina(int wielkosc)
-{
-    this->wielkosc = wielkosc;
-}
-
 Roslina::~Roslina() {
 //    std::cout << "Wywolano destruktor rosliny" << std::endl;
 }
@@ -27,6 +22,6 @@ void Roslina::rozmnazajSie() {
 
 void Roslina::przezyjDzien() {
     rosnij();
-    if (wielkosc > WIELKOSC_PRZYZWOLENIA && rand() % PLODNOSC == 0)
+    if (rand() % PLODNOSC == 0)
         rozmnazajSie();
 }

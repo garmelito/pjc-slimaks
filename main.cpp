@@ -10,14 +10,12 @@ Symulacja* symulacja = new Symulacja;
 
 int main(int argc, char *argv[])
 {
-    const int WIELKOSC_PIERWSZYCH_ROSLIN = 20;
-    //100 100 10 20
     srand(time(nullptr));
 
     int poczatkowaIloscRoslin;
     std::cout << "Ile roslin ma byc na poczatku? ";
     std::cin >> poczatkowaIloscRoslin;
-    for (int i = 0; i < poczatkowaIloscRoslin; i++) {Stworzenie* nowe = new Roslina(WIELKOSC_PIERWSZYCH_ROSLIN);
+    for (int i = 0; i < poczatkowaIloscRoslin; i++) {Stworzenie* nowe = new Roslina();
         symulacja->stworzenia.push_back(nowe);
         symulacja->rosliny.push_back(nowe);
     }
