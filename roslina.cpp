@@ -1,7 +1,7 @@
 #include "roslina.h"
-#include "symulacja.h"
+#include "srodowisko.h"
 
-extern Symulacja* symulacja;
+extern Srodowisko* srodowisko;
 
 Roslina::Roslina() {
     wielkosc = POCZATKOWA_WIELKOSC;
@@ -17,7 +17,7 @@ void Roslina::rosnij() {
 
 void Roslina::rozmnazajSie() {
     Stworzenie* nowe = new Roslina;
-    symulacja->rosliny.push_back(nowe);
+    srodowisko->rosliny.push_back(nowe);
 }
 
 void Roslina::przezyjDzien() {

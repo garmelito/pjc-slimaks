@@ -1,17 +1,15 @@
 #ifndef SYMULACJA_H
 #define SYMULACJA_H
 
-#include "stworzenie.h"
-
-#include <deque>
+#include "srodowisko.h"
 
 class Symulacja {
+private:
+    Srodowisko* srodowisko;
+    
 public:
-    std::deque<Stworzenie*> stworzenia;
-    std::deque<Stworzenie*> rosliny;
-    std::deque<Stworzenie*> roslinozerneSlimaki;
-    std::deque<Stworzenie*> drapiezneSlimaki;
-
+    void setSrodowisko(Srodowisko* srodowisko);
+    
 };
 
 #endif // SYMULACJA_H
