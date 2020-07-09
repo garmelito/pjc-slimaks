@@ -142,11 +142,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="roslina.cpp" />
     <ClCompile Include="slimak.cpp" />
+    <ClCompile Include="srodowisko.cpp" />
     <ClCompile Include="stworzenie.cpp" />
+    <ClCompile Include="symulacja.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="roslina.h" />
     <ClInclude Include="slimak.h" />
+    <ClInclude Include="srodowisko.h" />
     <ClInclude Include="stworzenie.h" />
     <ClInclude Include="symulacja.h" />
   </ItemGroup>

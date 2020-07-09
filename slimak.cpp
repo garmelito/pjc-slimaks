@@ -26,17 +26,17 @@ RoslinozernySlimak::~RoslinozernySlimak() {
 
 void RoslinozernySlimak::rozmnazajSie() {
     Stworzenie* nowe = new RoslinozernySlimak;
-    symulacja->roslinozerneSlimaki.push_back(nowe);
+    symulacja->srodowisko->roslinozerneSlimaki.push_back(nowe);
 }
 
 bool RoslinozernySlimak::zjedz() {
-    if (symulacja->rosliny.size() == 0) {
-//        std::cout << "Wszystkie symulacja->rosliny zostaly zniszczone! " << std::endl;
+    if (symulacja->srodowisko->rosliny.size() == 0) {
+//        std::cout << "Wszystkie symulacja->srodowisko->rosliny zostaly zniszczone! " << std::endl;
         return false;
     }
     else {
-        int zjadany = rand() % symulacja->rosliny.size();
-        Stworzenie* zjadane = symulacja->rosliny[zjadany];
+        int zjadany = rand() % symulacja->srodowisko->rosliny.size();
+        Stworzenie* zjadane = symulacja->srodowisko->rosliny[zjadany];
         int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
         if (zjadane->wielkosc > wielkoscGryza) {
             wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
@@ -44,7 +44,7 @@ bool RoslinozernySlimak::zjedz() {
         }
         else {
             wielkosc += (zjadane->wielkosc / DZIELNIK_PRZYROSTU);
-            symulacja->rosliny.erase(symulacja->rosliny.begin() + zjadany);
+            symulacja->srodowisko->rosliny.erase(symulacja->srodowisko->rosliny.begin() + zjadany);
         }
         return true;
     }
@@ -52,7 +52,7 @@ bool RoslinozernySlimak::zjedz() {
 
 void RoslinozernySlimak::umieraj() {
     if (wiek > ZYWOTNOSC)
-        symulacja->roslinozerneSlimaki.erase(symulacja->roslinozerneSlimaki.begin() + getIterator(symulacja->roslinozerneSlimaki));
+        symulacja->srodowisko->roslinozerneSlimaki.erase(symulacja->srodowisko->roslinozerneSlimaki.begin() + getIterator(symulacja->srodowisko->roslinozerneSlimaki));
 }
 
 DrapieznySlimak::DrapieznySlimak() {
@@ -66,28 +66,28 @@ DrapieznySlimak::~DrapieznySlimak(){
 
 void DrapieznySlimak::rozmnazajSie(){
     Stworzenie* nowe = new DrapieznySlimak;
-    symulacja->drapiezneSlimaki.push_back(nowe);
+    symulacja->srodowisko->drapiezneSlimaki.push_back(nowe);
 }
 
 bool DrapieznySlimak::zjedz() {
-    if (symulacja->roslinozerneSlimaki.size() == 0) {
+    if (symulacja->srodowisko->roslinozerneSlimaki.size() == 0) {
 //        std::cout << "Wszystkie roslinozerne slimaki zostaly zniszczone! " << std::endl;
         return false;
     }
     else {
-        int zjadany = rand() % symulacja->roslinozerneSlimaki.size();
-        Stworzenie* zjadane = symulacja->roslinozerneSlimaki[zjadany];
+        int zjadany = rand() % symulacja->srodowisko->roslinozerneSlimaki.size();
+        Stworzenie* zjadane = symulacja->srodowisko->roslinozerneSlimaki[zjadany];
         int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
         if (zjadane->wielkosc > wielkoscGryza)
             wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
         else
             wielkosc += (zjadane->wielkosc / DZIELNIK_PRZYROSTU);
-        symulacja->roslinozerneSlimaki.erase(symulacja->roslinozerneSlimaki.begin() + zjadany);
+        symulacja->srodowisko->roslinozerneSlimaki.erase(symulacja->srodowisko->roslinozerneSlimaki.begin() + zjadany);
         return true;
     }
 }
 
 void DrapieznySlimak::umieraj() {
     if (wiek > ZYWOTNOSC)
-        symulacja->drapiezneSlimaki.erase(symulacja->drapiezneSlimaki.begin() + getIterator(symulacja->drapiezneSlimaki));
+        symulacja->srodowisko->drapiezneSlimaki.erase(symulacja->srodowisko->drapiezneSlimaki.begin() + getIterator(symulacja->srodowisko->drapiezneSlimaki));
 }

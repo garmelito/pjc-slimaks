@@ -27,6 +27,12 @@
     <ClCompile Include="stworzenie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="symulacja.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="srodowisko.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="roslina.h">
@@ -39,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="symulacja.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="srodowisko.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

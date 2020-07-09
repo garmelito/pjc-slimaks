@@ -1,72 +1,35 @@
-#include "roslina.h"
-#include "slimak.h"
+#include "srodowisko.h"
 #include "symulacja.h"
 
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 
-Symulacja* symulacja = new Symulacja;
+Symulacja* symulacja;
 
 int main(int argc, char *argv[])
 {
     srand(time(nullptr));
 
-    int poczatkowaIloscRoslin;
+    int roslin_start, roslinozernych_start, drapieznych_start;
     std::cout << "Ile roslin ma byc na poczatku? ";
-    std::cin >> poczatkowaIloscRoslin;
-    for (int i = 0; i < poczatkowaIloscRoslin; i++) {Stworzenie* nowe = new Roslina();
-        symulacja->stworzenia.push_back(nowe);
-        symulacja->rosliny.push_back(nowe);
-    }
-    int poczatkowaIloscRoslinozernychSlimakow;
+    std::cin >> roslin_start;
     std::cout << "Ile roslinozernych slimakow ma byc na poczatku? ";
-    std::cin >> poczatkowaIloscRoslinozernychSlimakow;
-    for (int i = 0; i < poczatkowaIloscRoslinozernychSlimakow; i++) {
-        Stworzenie* nowe = new RoslinozernySlimak;
-        symulacja->stworzenia.push_back(nowe);
-        symulacja->roslinozerneSlimaki.push_back(nowe);
-    }
-    int poczatkowaIloscDrapieznychSlimakow;
+    std::cin >> roslinozernych_start;
     std::cout << "Ile drapieznych slimakow ma byc na poczatku? ";
-    std::cin >> poczatkowaIloscDrapieznychSlimakow;
-    for (int i = 0; i < poczatkowaIloscDrapieznychSlimakow; i++) {
-        Stworzenie* nowe = new DrapieznySlimak;
-        symulacja->stworzenia.push_back(nowe);
-        symulacja->drapiezneSlimaki.push_back(nowe);
-    }
+    std::cin >> drapieznych_start;
 
-    int iloscDni;
+    Srodowisko* srodowisko = new Srodowisko(roslin_start, roslinozernych_start, drapieznych_start);
+    symulacja = new Symulacja(srodowisko);
+
+    int dniSymulacji;
     std::cout <<"Ile dni ma trwac symulacja? ";
-    std::cin >> iloscDni;
-    for (int i = 0; i < iloscDni; i++) {
-        std::cout << "Dzien " << i << ", roslin: " << symulacja->rosliny.size() << ", roslinozernych slimakow: " << symulacja->roslinozerneSlimaki.size()
-                  << ", drapieznych slimakow: " <<symulacja->drapiezneSlimaki.size() << std::endl;
-        for (size_t i = 0; i < symulacja->stworzenia.size(); i++) {
-//            std::cout << symulacja->stworzenia[i]->nazwa  << " " << symulacja->stworzenia[i]->wielkosc << std::endl;
-            symulacja->stworzenia[i]->przezyjDzien();
-        }
+    std::cin >> dniSymulacji;
 
-        //usuwanie zmarlych
-        for (size_t i = 0; i < symulacja->stworzenia.size(); i++) {
-            if (!(symulacja->stworzenia[i]->isInside(symulacja->rosliny) || symulacja->stworzenia[i]->isInside(symulacja->roslinozerneSlimaki) || symulacja->stworzenia[i]->isInside(symulacja->drapiezneSlimaki))) {
-                Stworzenie* temp = symulacja->stworzenia[i];
-                symulacja->stworzenia.erase(symulacja->stworzenia.begin()+i);
-                delete temp;
-                i--;
-            }
-        }
-
-        //przepisywanie zywych z gatunkow do stworzen, pamietajmy o nowonarodzonych
-        symulacja->stworzenia.clear();
-        for (size_t i = 0; i < symulacja->rosliny.size(); i++) {
-            symulacja->stworzenia.push_back(symulacja->rosliny[i]);
-        }
-        for (size_t i = 0; i < symulacja->roslinozerneSlimaki.size(); i++) {
-            symulacja->stworzenia.push_back(symulacja->roslinozerneSlimaki[i]);
-        }
-        for (size_t i = 0; i < symulacja->drapiezneSlimaki.size(); i++) {
-            symulacja->stworzenia.push_back(symulacja->drapiezneSlimaki[i]);
+    for (int i = 0; i < dniSymulacji; i++) {
+        if (symulacja->krok(i)) {
+            std::cout << "Wszystkie stworzenia zginely :( \n";
+            return 0;
         }
     }
 
