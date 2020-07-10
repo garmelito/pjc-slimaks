@@ -7,6 +7,7 @@
 class Stworzenie {
 public:
     int wielkosc;
+    bool martwy;
 
     virtual void rosnij() = 0;
     virtual void rozmnazajSie() = 0;

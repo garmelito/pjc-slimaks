@@ -18,6 +18,7 @@ void Slimak::przezyjDzien() {
 RoslinozernySlimak::RoslinozernySlimak() {
     wielkosc = WIELKOSC_NOWEGO;
     wiek = 1;
+    martwy = false;
 }
 
 RoslinozernySlimak::~RoslinozernySlimak() {
@@ -27,6 +28,7 @@ RoslinozernySlimak::~RoslinozernySlimak() {
 void RoslinozernySlimak::rozmnazajSie() {
     Stworzenie* nowe = new RoslinozernySlimak;
     symulacja->srodowisko->roslinozerneSlimaki.push_back(nowe);
+    symulacja->srodowisko->stworzenia.push_back(nowe);
 }
 
 bool RoslinozernySlimak::zjedz() {
@@ -44,7 +46,7 @@ bool RoslinozernySlimak::zjedz() {
         }
         else {
             wielkosc += (zjadane->wielkosc / DZIELNIK_PRZYROSTU);
-            symulacja->srodowisko->rosliny.erase(symulacja->srodowisko->rosliny.begin() + zjadany);
+            symulacja->srodowisko->rosliny[zjadany]->martwy = true;
         }
         return true;
     }
@@ -52,12 +54,13 @@ bool RoslinozernySlimak::zjedz() {
 
 void RoslinozernySlimak::umieraj() {
     if (wiek > ZYWOTNOSC)
-        symulacja->srodowisko->roslinozerneSlimaki.erase(symulacja->srodowisko->roslinozerneSlimaki.begin() + getIterator(symulacja->srodowisko->roslinozerneSlimaki));
+        martwy = true;
 }
 
 DrapieznySlimak::DrapieznySlimak() {
     wielkosc = WIELKOSC_NOWEGO;
     wiek = 1;
+    martwy = false;
 }
 
 DrapieznySlimak::~DrapieznySlimak(){
@@ -67,6 +70,7 @@ DrapieznySlimak::~DrapieznySlimak(){
 void DrapieznySlimak::rozmnazajSie(){
     Stworzenie* nowe = new DrapieznySlimak;
     symulacja->srodowisko->drapiezneSlimaki.push_back(nowe);
+    symulacja->srodowisko->stworzenia.push_back(nowe);
 }
 
 bool DrapieznySlimak::zjedz() {
@@ -82,12 +86,12 @@ bool DrapieznySlimak::zjedz() {
             wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
         else
             wielkosc += (zjadane->wielkosc / DZIELNIK_PRZYROSTU);
-        symulacja->srodowisko->roslinozerneSlimaki.erase(symulacja->srodowisko->roslinozerneSlimaki.begin() + zjadany);
+        symulacja->srodowisko->roslinozerneSlimaki[zjadany]->martwy = true;
         return true;
     }
 }
 
 void DrapieznySlimak::umieraj() {
     if (wiek > ZYWOTNOSC)
-        symulacja->srodowisko->drapiezneSlimaki.erase(symulacja->srodowisko->drapiezneSlimaki.begin() + getIterator(symulacja->srodowisko->drapiezneSlimaki));
+        martwy = true;
 }
