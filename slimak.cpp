@@ -19,6 +19,7 @@ RoslinozernySlimak::RoslinozernySlimak() {
     wielkosc = WIELKOSC_NOWEGO;
     wiek = 1;
     martwy = false;
+
 }
 
 RoslinozernySlimak::~RoslinozernySlimak() {

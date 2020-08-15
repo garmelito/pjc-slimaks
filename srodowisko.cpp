@@ -25,7 +25,7 @@ Srodowisko::Srodowisko(int roslin_start, int roslinozernych_start, int drapiezny
         drapiezneSlimaki->push_back(nowe);
     }
 
-    //rosliny[0]->pozywienie = nullptr;
-    //roslinozerneSlimaki[0]->pozywienie = rosliny;
-    //drapiezneSlimaki[0]->pozywienie = roslinozerneSlimaki;
+    rosliny -> operator[](0)->pozywienie = nullptr;
+    roslinozerneSlimaki -> operator[](0)->pozywienie = rosliny;
+    drapiezneSlimaki -> operator[](0)->pozywienie = roslinozerneSlimaki;
 }
