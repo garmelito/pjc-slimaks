@@ -7,10 +7,10 @@
 class Srodowisko
 {
 public:
-    std::deque<Stworzenie*> stworzenia;
-    std::deque<Stworzenie*> rosliny;
-    std::deque<Stworzenie*> roslinozerneSlimaki;
-    std::deque<Stworzenie*> drapiezneSlimaki;
+    std::shared_ptr<std::deque<Stworzenie*>> stworzenia;
+    std::shared_ptr<std::deque<Stworzenie*>> rosliny;
+    std::shared_ptr<std::deque<Stworzenie*>> roslinozerneSlimaki;
+    std::shared_ptr<std::deque<Stworzenie*>> drapiezneSlimaki;
 
     Srodowisko(int roslin_start, int roslinozernych_start, int drapieznych_start);
 };

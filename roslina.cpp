@@ -18,8 +18,8 @@ void Roslina::rosnij() {
 
 void Roslina::rozmnazajSie() {
     Stworzenie* nowe = new Roslina;
-    symulacja->srodowisko->rosliny.push_back(nowe);
-    symulacja->srodowisko->stworzenia.push_back(nowe);
+    symulacja->srodowisko->rosliny->push_back(nowe);
+    symulacja->srodowisko->stworzenia->push_back(nowe);
 }
 
 void Roslina::przezyjDzien() {
