@@ -14,38 +14,30 @@ bool Symulacja::krok(int i)
     }
 
     //usuniecie oznaczonych jako martwy z listy stworzen i gatunkow
-    srodowisko->stworzenia.clear();
     for (size_t i = 0; i < srodowisko->rosliny.size(); i++) {
         if (srodowisko->rosliny[i]->martwy == true) {
-            Stworzenie* temp = srodowisko->rosliny[i];
             srodowisko->rosliny.erase(srodowisko->rosliny.begin() + i);
-            delete temp;
             i--;
-        }
-        else {
-            srodowisko->stworzenia.push_back(srodowisko->rosliny[i]);
         }
     }
     for (size_t i = 0; i < srodowisko->roslinozerneSlimaki.size(); i++) {
         if (srodowisko->roslinozerneSlimaki[i]->martwy == true) {
-            Stworzenie* temp = srodowisko->roslinozerneSlimaki[i];
             srodowisko->roslinozerneSlimaki.erase(srodowisko->roslinozerneSlimaki.begin() + i);
-            delete temp;
             i--;
-        }
-        else {
-            srodowisko->stworzenia.push_back(srodowisko->roslinozerneSlimaki[i]);
         }
     }
     for (size_t i = 0; i < srodowisko->drapiezneSlimaki.size(); i++) {
         if (srodowisko->drapiezneSlimaki[i]->martwy == true) {
-            Stworzenie* temp = srodowisko->drapiezneSlimaki[i];
             srodowisko->drapiezneSlimaki.erase(srodowisko->drapiezneSlimaki.begin() + i);
-            delete temp;
             i--;
         }
-        else {
-            srodowisko->stworzenia.push_back(srodowisko->drapiezneSlimaki[i]);
+    }
+    for (size_t i = 0; i < srodowisko->stworzenia.size(); i++) {
+        if (srodowisko->stworzenia[i]->martwy == true) {
+            Stworzenie* temp = srodowisko->stworzenia[i];
+            srodowisko->stworzenia.erase(srodowisko->stworzenia.begin() + i);
+            delete temp;
+            i--;
         }
     }
 
