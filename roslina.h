@@ -4,11 +4,12 @@
 #include "stworzenie.h"
 
 class Roslina : public Stworzenie {
-private:
+protected:
     static const int POCZATKOWA_WIELKOSC = 1;
     static const int PRZYROST = 3;
     static const int PLODNOSC = 10;
 
+protected:
     void rosnij();
     void rozmnazajSie();
 public:

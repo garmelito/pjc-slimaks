@@ -4,10 +4,10 @@
 #include "srodowisko.h"
 
 class Symulacja {
-private:
-
 public:
 	Srodowisko* srodowisko;
+
+public:
 	void setSrodowisko(Srodowisko* srodowisko);
 	Symulacja(Srodowisko* srodowisko);
 	bool krok(int i);

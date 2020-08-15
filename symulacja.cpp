@@ -15,25 +15,25 @@ bool Symulacja::krok(int i)
 
     //usuniecie oznaczonych jako martwy z listy stworzen i gatunkow
     for (size_t i = 0; i < srodowisko->rosliny.size(); i++) {
-        if (srodowisko->rosliny[i]->martwy == true) {
+        if (srodowisko->rosliny[i]->get_martwy() == true) {
             srodowisko->rosliny.erase(srodowisko->rosliny.begin() + i);
             i--;
         }
     }
     for (size_t i = 0; i < srodowisko->roslinozerneSlimaki.size(); i++) {
-        if (srodowisko->roslinozerneSlimaki[i]->martwy == true) {
+        if (srodowisko->roslinozerneSlimaki[i]->get_martwy() == true) {
             srodowisko->roslinozerneSlimaki.erase(srodowisko->roslinozerneSlimaki.begin() + i);
             i--;
         }
     }
     for (size_t i = 0; i < srodowisko->drapiezneSlimaki.size(); i++) {
-        if (srodowisko->drapiezneSlimaki[i]->martwy == true) {
+        if (srodowisko->drapiezneSlimaki[i]->get_martwy() == true) {
             srodowisko->drapiezneSlimaki.erase(srodowisko->drapiezneSlimaki.begin() + i);
             i--;
         }
     }
     for (size_t i = 0; i < srodowisko->stworzenia.size(); i++) {
-        if (srodowisko->stworzenia[i]->martwy == true) {
+        if (srodowisko->stworzenia[i]->get_martwy() == true) {
             Stworzenie* temp = srodowisko->stworzenia[i];
             srodowisko->stworzenia.erase(srodowisko->stworzenia.begin() + i);
             delete temp;

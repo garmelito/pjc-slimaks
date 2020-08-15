@@ -4,7 +4,7 @@
 #include "stworzenie.h"
 
 class Slimak : public Stworzenie {
-public:
+protected:
     int wiek;
     static const int PLODNOSC = 5;
     static const int WIELKOSC_NOWEGO = 10;
@@ -12,6 +12,7 @@ public:
     static const int DZIELNIK_PRZYROSTU = 3;
     static const int ZYWOTNOSC = 10;
 
+protected:
     virtual ~Slimak() {
 //        std::cout << "Wywolano destruktor slimaka" << std::endl;
     }
@@ -19,11 +20,12 @@ public:
     virtual bool zjedz() = 0;
     virtual void umieraj() = 0;
     void rosnij();
+public:
     void przezyjDzien();
 };
 
 class RoslinozernySlimak : public Slimak {
-private:
+protected:
     void rozmnazajSie();
     bool zjedz();
     void umieraj();
@@ -33,7 +35,7 @@ public:
 };
 
 class DrapieznySlimak : public Slimak {
-private:
+protected:
     void rozmnazajSie();
     bool zjedz();
     void umieraj();
