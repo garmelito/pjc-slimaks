@@ -10,11 +10,11 @@ void Stworzenie::set_wielkosc(int wielkosc) {
     this->wielkosc = wielkosc;
 }
 
-bool Stworzenie::get_martwy() {
+const bool Stworzenie::get_martwy() {
     return martwy;
 }
 
-int Stworzenie::get_wielkosc()
+const int Stworzenie::get_wielkosc()
 {
     return wielkosc;
 }

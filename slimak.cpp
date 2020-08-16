@@ -23,23 +23,29 @@ void RoslinozernySlimak::rozmnazajSie() {
     wszystkie->push_back(nowe);
 }
 
+//jesli jakies stworzenia sa jeszcze na liscie pozywienia podejmie 5 prob znalezienia nieoznaczonego jako martwe
 bool RoslinozernySlimak::zjedz() {
     if (pozywienie->size() == 0) {
         return false;
     }
     else {
-        int zjadany = rand() % pozywienie->size();
-        std::shared_ptr<Stworzenie> zjadane = pozywienie->operator[](zjadany);
-        int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
-        if (zjadane->get_wielkosc() > wielkoscGryza) {
-            wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
-            zjadane->set_wielkosc (zjadane->get_wielkosc() - wielkoscGryza);
+        for (int i = 0; i < 5; i++) {
+            int zjadany = rand() % pozywienie->size();
+            std::shared_ptr<Stworzenie> zjadane = pozywienie->operator[](zjadany);            
+            if (zjadane->get_martwy() == false) {
+                int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
+                if (zjadane->get_wielkosc() > wielkoscGryza) {
+                    wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
+                    zjadane->set_wielkosc(zjadane->get_wielkosc() - wielkoscGryza);
+                }
+                else {
+                    wielkosc += (zjadane->get_wielkosc() / DZIELNIK_PRZYROSTU);
+                    zjadane->set_martwy(true);
+                }
+                return true;
+            }
         }
-        else {
-            wielkosc += (zjadane->get_wielkosc() / DZIELNIK_PRZYROSTU);
-            zjadane->set_martwy(true);
-        }
-        return true;
+        return false;
     }
 }
 
@@ -60,20 +66,28 @@ void DrapieznySlimak::rozmnazajSie(){
     wszystkie->push_back(nowe);
 }
 
+//jesli jakies stworzenia sa jeszcze na liscie pozywienia podejmie 5 prob znalezienia nieoznaczonego jako martwe
 bool DrapieznySlimak::zjedz() {
     if (pozywienie->size() == 0) {
         return false;
     }
     else {
-        int zjadany = rand() % pozywienie->size();
-        std::shared_ptr<Stworzenie> zjadane = pozywienie -> operator[](zjadany);
-        int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
-        if (zjadane->get_wielkosc() > wielkoscGryza)
-            wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
-        else
-            wielkosc += (zjadane->get_wielkosc() / DZIELNIK_PRZYROSTU);
-        zjadane->set_martwy(true);
-        return true;
+        for (int i = 0; i < 5; i++) {
+            int zjadany = rand() % pozywienie->size();
+            std::shared_ptr<Stworzenie> zjadane = pozywienie->operator[](zjadany);
+            if (zjadane->get_martwy() == false) {
+                int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
+                if (zjadane->get_wielkosc() > wielkoscGryza) {
+                    wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
+                }
+                else {
+                    wielkosc += (zjadane->get_wielkosc() / DZIELNIK_PRZYROSTU);
+                }
+                zjadane->set_martwy(true);
+                return true;
+            }
+        }
+        return false;
     }
 }
 

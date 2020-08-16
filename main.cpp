@@ -8,6 +8,7 @@
 #include <ctime>
 #include <iostream>
 
+//definicja pol statycznych
 std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> RoslinozernySlimak::pozywienie;
 std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> DrapieznySlimak::pozywienie;
 std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> Roslina::gatunek;

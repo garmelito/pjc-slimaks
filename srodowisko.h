@@ -4,6 +4,7 @@
 
 #include <deque>
 
+/// \class zawiera liste wszystkich stworzen oraz liste stworzen kazdego gatunku
 class Srodowisko
 {
 private:

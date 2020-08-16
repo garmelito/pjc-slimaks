@@ -4,9 +4,18 @@
 #include <deque>
 #include <iostream>
 
+/// <summary>
+/// \class interfejs stworzenia
+/// </summary>
 class Stworzenie {
 protected:
+    /// <summary>
+    /// znacznik, ktory jest sprawdzany podczas usuwania martwych stworzen, po zakonczeniu wszystkich interakcji
+    /// </summary>
     bool martwy;
+    /// <summary>
+    /// wlasciwosc, majaca znaczenia podczas zjadania osobnika przez drapieznika
+    /// </summary>
     int wielkosc;
 public:
     static std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> wszystkie;
@@ -17,8 +26,8 @@ protected:
 public:
     virtual void przezyjDzien() = 0;
 
-    bool get_martwy();
-    int get_wielkosc();
+    const bool get_martwy();
+    const int get_wielkosc();
     void set_martwy(bool martwy);
     void set_wielkosc(int wielkosc);
 };
