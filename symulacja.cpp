@@ -36,9 +36,7 @@ bool Symulacja::krok(int i)
     }
     for (size_t i = 0; i < Stworzenie::wszystkie->size(); i++) {
         if (Stworzenie::wszystkie-> operator[](i)->get_martwy() == true) {
-            Stworzenie* temp = Stworzenie::wszystkie-> operator[](i);
             Stworzenie::wszystkie->erase(Stworzenie::wszystkie->begin() + i);
-            delete temp;
             i--;
         }
     }

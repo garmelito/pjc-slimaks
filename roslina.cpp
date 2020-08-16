@@ -10,7 +10,7 @@ void Roslina::rosnij() {
 }
 
 void Roslina::rozmnazajSie() {
-    Stworzenie* nowe = new Roslina;
+    std::shared_ptr<Stworzenie> nowe = std::make_shared<Roslina>();
     gatunek->push_back(nowe);
     wszystkie->push_back(nowe);
 }

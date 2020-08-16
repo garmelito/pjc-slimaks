@@ -8,12 +8,12 @@
 #include <ctime>
 #include <iostream>
 
-std::shared_ptr<std::deque<Stworzenie*>> RoslinozernySlimak::pozywienie;
-std::shared_ptr<std::deque<Stworzenie*>> DrapieznySlimak::pozywienie;
-std::shared_ptr<std::deque<Stworzenie*>> Roslina::gatunek;
-std::shared_ptr<std::deque<Stworzenie*>> RoslinozernySlimak::gatunek;
-std::shared_ptr<std::deque<Stworzenie*>> DrapieznySlimak::gatunek;
-std::shared_ptr<std::deque<Stworzenie*>> Stworzenie::wszystkie;
+std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> RoslinozernySlimak::pozywienie;
+std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> DrapieznySlimak::pozywienie;
+std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> Roslina::gatunek;
+std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> RoslinozernySlimak::gatunek;
+std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> DrapieznySlimak::gatunek;
+std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> Stworzenie::wszystkie;
 
 int main(int argc, char *argv[])
 {

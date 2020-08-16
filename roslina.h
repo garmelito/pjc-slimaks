@@ -5,7 +5,7 @@
 
 class Roslina : public Stworzenie {
 public:
-    static std::shared_ptr<std::deque<Stworzenie*>> gatunek;
+    static std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> gatunek;
 protected:
     static const int POCZATKOWA_WIELKOSC = 1;
     static const int PRZYROST = 3;

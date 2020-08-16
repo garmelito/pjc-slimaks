@@ -23,8 +23,8 @@ public:
 
 class RoslinozernySlimak : public Slimak {
 public:
-    static std::shared_ptr<std::deque<Stworzenie*>> pozywienie;
-    static std::shared_ptr<std::deque<Stworzenie*>> gatunek;
+    static std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> pozywienie;
+    static std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> gatunek;
 protected:
     void rozmnazajSie();
     bool zjedz();
@@ -35,8 +35,8 @@ public:
 
 class DrapieznySlimak : public Slimak {
 public:
-    static std::shared_ptr<std::deque<Stworzenie*>> pozywienie;
-    static std::shared_ptr<std::deque<Stworzenie*>> gatunek;
+    static std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> pozywienie;
+    static std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> gatunek;
 protected:
     void rozmnazajSie();
     bool zjedz();

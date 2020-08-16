@@ -18,7 +18,7 @@ RoslinozernySlimak::RoslinozernySlimak() {
 }
 
 void RoslinozernySlimak::rozmnazajSie() {
-    Stworzenie* nowe = new RoslinozernySlimak;
+    std::shared_ptr<Stworzenie> nowe = std::make_shared<RoslinozernySlimak>();
     gatunek->push_back(nowe);
     wszystkie->push_back(nowe);
 }
@@ -29,7 +29,7 @@ bool RoslinozernySlimak::zjedz() {
     }
     else {
         int zjadany = rand() % pozywienie->size();
-        Stworzenie* zjadane = pozywienie->operator[](zjadany);
+        std::shared_ptr<Stworzenie> zjadane = pozywienie->operator[](zjadany);
         int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
         if (zjadane->get_wielkosc() > wielkoscGryza) {
             wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
@@ -55,7 +55,7 @@ DrapieznySlimak::DrapieznySlimak() {
 }
 
 void DrapieznySlimak::rozmnazajSie(){
-    Stworzenie* nowe = new DrapieznySlimak;
+    std::shared_ptr<Stworzenie> nowe = std::make_shared<DrapieznySlimak>();
     gatunek->push_back(nowe);
     wszystkie->push_back(nowe);
 }
@@ -66,7 +66,7 @@ bool DrapieznySlimak::zjedz() {
     }
     else {
         int zjadany = rand() % pozywienie->size();
-        Stworzenie* zjadane = pozywienie -> operator[](zjadany);
+        std::shared_ptr<Stworzenie> zjadane = pozywienie -> operator[](zjadany);
         int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
         if (zjadane->get_wielkosc() > wielkoscGryza)
             wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;

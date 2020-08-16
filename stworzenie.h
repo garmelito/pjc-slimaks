@@ -9,7 +9,7 @@ protected:
     bool martwy;
     int wielkosc;
 public:
-    static std::shared_ptr<std::deque<Stworzenie*>> wszystkie;
+    static std::shared_ptr<std::deque<std::shared_ptr<Stworzenie>>> wszystkie;
 
 protected:
     virtual void rosnij() = 0;
@@ -21,9 +21,6 @@ public:
     int get_wielkosc();
     void set_martwy(bool martwy);
     void set_wielkosc(int wielkosc);
-
-    bool isInside(std::shared_ptr<std::deque<Stworzenie*>> gatunek);
-    size_t getIterator(std::shared_ptr<std::deque<Stworzenie*>> gatunek);
 };
 
 #endif // STWORZENIE_H
