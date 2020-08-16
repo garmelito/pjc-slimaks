@@ -16,7 +16,6 @@ protected:
     void rozmnazajSie();
 public:
     Roslina();
-    ~Roslina();
     void przezyjDzien();
 };
 

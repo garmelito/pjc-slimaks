@@ -5,10 +5,6 @@ Roslina::Roslina() {
     martwy = false;
 }
 
-Roslina::~Roslina() {
-//    std::cout << "Wywolano destruktor rosliny" << std::endl;
-}
-
 void Roslina::rosnij() {
     wielkosc = wielkosc + PRZYROST;
 }

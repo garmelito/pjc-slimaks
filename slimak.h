@@ -13,9 +13,6 @@ protected:
     static const int ZYWOTNOSC = 10;
 
 protected:
-    virtual ~Slimak() {
-//        std::cout << "Wywolano destruktor slimaka" << std::endl;
-    }
     virtual void rozmnazajSie() = 0;
     virtual bool zjedz() = 0;
     virtual void umieraj() = 0;
@@ -34,7 +31,6 @@ protected:
     void umieraj();
 public:
     RoslinozernySlimak();
-    ~RoslinozernySlimak();
 };
 
 class DrapieznySlimak : public Slimak {
@@ -47,7 +43,6 @@ protected:
     void umieraj();
 public:
     DrapieznySlimak();
-    ~DrapieznySlimak();
 };
 
 #endif // SLIMAK_H

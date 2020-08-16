@@ -17,10 +17,6 @@ RoslinozernySlimak::RoslinozernySlimak() {
     martwy = false;
 }
 
-RoslinozernySlimak::~RoslinozernySlimak() {
-//    std::cout << "Wywolano destruktor roslinozernego slimaka" << std::endl;
-}
-
 void RoslinozernySlimak::rozmnazajSie() {
     Stworzenie* nowe = new RoslinozernySlimak;
     gatunek->push_back(nowe);
@@ -29,7 +25,6 @@ void RoslinozernySlimak::rozmnazajSie() {
 
 bool RoslinozernySlimak::zjedz() {
     if (pozywienie->size() == 0) {
-//        std::cout << "Wszystkie symulacja->srodowisko->rosliny zostaly zniszczone! " << std::endl;
         return false;
     }
     else {
@@ -59,10 +54,6 @@ DrapieznySlimak::DrapieznySlimak() {
     martwy = false;
 }
 
-DrapieznySlimak::~DrapieznySlimak(){
-//    std::cout << "Wywolano destruktor drapieznego slimaka" << std::endl;
-}
-
 void DrapieznySlimak::rozmnazajSie(){
     Stworzenie* nowe = new DrapieznySlimak;
     gatunek->push_back(nowe);
@@ -71,7 +62,6 @@ void DrapieznySlimak::rozmnazajSie(){
 
 bool DrapieznySlimak::zjedz() {
     if (pozywienie->size() == 0) {
-//        std::cout << "Wszystkie roslinozerne slimaki zostaly zniszczone! " << std::endl;
         return false;
     }
     else {

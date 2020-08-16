@@ -22,10 +22,6 @@ public:
     void set_martwy(bool martwy);
     void set_wielkosc(int wielkosc);
 
-    virtual ~Stworzenie() {
-//        std::cout << "Wywolano destruktor Stowrzenia" << std::endl;
-    }
-
     bool isInside(std::shared_ptr<std::deque<Stworzenie*>> gatunek);
     size_t getIterator(std::shared_ptr<std::deque<Stworzenie*>> gatunek);
 };
