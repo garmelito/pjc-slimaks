@@ -8,10 +8,12 @@
 #include <ctime>
 #include <iostream>
 
-Symulacja* symulacja;
-
 std::shared_ptr<std::deque<Stworzenie*>> RoslinozernySlimak::pozywienie;
 std::shared_ptr<std::deque<Stworzenie*>> DrapieznySlimak::pozywienie;
+std::shared_ptr<std::deque<Stworzenie*>> Roslina::gatunek;
+std::shared_ptr<std::deque<Stworzenie*>> RoslinozernySlimak::gatunek;
+std::shared_ptr<std::deque<Stworzenie*>> DrapieznySlimak::gatunek;
+std::shared_ptr<std::deque<Stworzenie*>> Stworzenie::wszystkie;
 
 int main(int argc, char *argv[])
 {
@@ -26,7 +28,7 @@ int main(int argc, char *argv[])
     std::cin >> drapieznych_start;
 
     Srodowisko* srodowisko = new Srodowisko(roslin_start, roslinozernych_start, drapieznych_start);
-    symulacja = new Symulacja(srodowisko);
+    Symulacja* symulacja = new Symulacja(srodowisko);
 
     int dniSymulacji;
     std::cout <<"Ile dni ma trwac symulacja? ";

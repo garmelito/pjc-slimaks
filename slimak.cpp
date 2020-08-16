@@ -1,8 +1,4 @@
 #include "slimak.h"
-#include "roslina.h"
-#include "symulacja.h"
-
-extern Symulacja* symulacja;
 
 void Slimak::rosnij() {
     wiek++;
@@ -19,7 +15,6 @@ RoslinozernySlimak::RoslinozernySlimak() {
     wielkosc = WIELKOSC_NOWEGO;
     wiek = 1;
     martwy = false;
-
 }
 
 RoslinozernySlimak::~RoslinozernySlimak() {
@@ -28,18 +23,18 @@ RoslinozernySlimak::~RoslinozernySlimak() {
 
 void RoslinozernySlimak::rozmnazajSie() {
     Stworzenie* nowe = new RoslinozernySlimak;
-    symulacja->srodowisko->roslinozerneSlimaki->push_back(nowe);
-    symulacja->srodowisko->stworzenia->push_back(nowe);
+    gatunek->push_back(nowe);
+    wszystkie->push_back(nowe);
 }
 
 bool RoslinozernySlimak::zjedz() {
-    if (symulacja->srodowisko->rosliny->size() == 0) {
+    if (pozywienie->size() == 0) {
 //        std::cout << "Wszystkie symulacja->srodowisko->rosliny zostaly zniszczone! " << std::endl;
         return false;
     }
     else {
-        int zjadany = rand() % symulacja->srodowisko->rosliny->size();
-        Stworzenie* zjadane = symulacja->srodowisko->rosliny->operator[](zjadany);
+        int zjadany = rand() % pozywienie->size();
+        Stworzenie* zjadane = pozywienie->operator[](zjadany);
         int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
         if (zjadane->get_wielkosc() > wielkoscGryza) {
             wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;
@@ -70,18 +65,18 @@ DrapieznySlimak::~DrapieznySlimak(){
 
 void DrapieznySlimak::rozmnazajSie(){
     Stworzenie* nowe = new DrapieznySlimak;
-    symulacja->srodowisko->drapiezneSlimaki->push_back(nowe);
-    symulacja->srodowisko->stworzenia->push_back(nowe);
+    gatunek->push_back(nowe);
+    wszystkie->push_back(nowe);
 }
 
 bool DrapieznySlimak::zjedz() {
-    if (symulacja->srodowisko->roslinozerneSlimaki->size() == 0) {
+    if (pozywienie->size() == 0) {
 //        std::cout << "Wszystkie roslinozerne slimaki zostaly zniszczone! " << std::endl;
         return false;
     }
     else {
-        int zjadany = rand() % symulacja->srodowisko->roslinozerneSlimaki->size();
-        Stworzenie* zjadane = symulacja->srodowisko->roslinozerneSlimaki -> operator[](zjadany);
+        int zjadany = rand() % pozywienie->size();
+        Stworzenie* zjadane = pozywienie -> operator[](zjadany);
         int wielkoscGryza = wielkosc / DZIELNIK_GRYZA;
         if (zjadane->get_wielkosc() > wielkoscGryza)
             wielkosc += wielkoscGryza / DZIELNIK_PRZYROSTU;

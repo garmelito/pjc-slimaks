@@ -1,3 +1,5 @@
+#include "roslina.h"
+#include "slimak.h"
 #include "symulacja.h"
 
 void Symulacja::setSrodowisko(Srodowisko* srodowisko)
@@ -7,42 +9,42 @@ void Symulacja::setSrodowisko(Srodowisko* srodowisko)
 
 bool Symulacja::krok(int i)
 {
-    std::cout << "Dzien " << i << ", roslin: " << srodowisko->rosliny->size() << ", roslinozernych slimakow: " << srodowisko->roslinozerneSlimaki->size()
-        << ", drapieznych slimakow: " << srodowisko->drapiezneSlimaki->size() << std::endl;
-    for (size_t i = 0; i < srodowisko->stworzenia->size(); i++) {
-        srodowisko->stworzenia-> operator[](i)->przezyjDzien();
+    std::cout << "Dzien " << i << ", roslin: " << Roslina::gatunek->size() << ", roslinozernych slimakow: " << RoslinozernySlimak::gatunek->size()
+        << ", drapieznych slimakow: " << DrapieznySlimak::gatunek->size() << std::endl;
+    for (size_t i = 0; i < Stworzenie::wszystkie->size(); i++) {
+        Stworzenie::wszystkie-> operator[](i)->przezyjDzien();
     }
 
     //usuniecie oznaczonych jako martwy z listy stworzen i gatunkow
-    for (size_t i = 0; i < srodowisko->rosliny->size(); i++) {
-        if (srodowisko->rosliny-> operator[](i)->get_martwy() == true) {
-            srodowisko->rosliny->erase(srodowisko->rosliny->begin() + i);
+    for (size_t i = 0; i < Roslina::gatunek->size(); i++) {
+        if (Roslina::gatunek-> operator[](i)->get_martwy() == true) {
+            Roslina::gatunek->erase(Roslina::gatunek->begin() + i);
             i--;
         }
     }
-    for (size_t i = 0; i < srodowisko->roslinozerneSlimaki->size(); i++) {
-        if (srodowisko->roslinozerneSlimaki-> operator[](i)->get_martwy() == true) {
-            srodowisko->roslinozerneSlimaki->erase(srodowisko->roslinozerneSlimaki->begin() + i);
+    for (size_t i = 0; i < RoslinozernySlimak::gatunek->size(); i++) {
+        if (RoslinozernySlimak::gatunek-> operator[](i)->get_martwy() == true) {
+            RoslinozernySlimak::gatunek->erase(RoslinozernySlimak::gatunek->begin() + i);
             i--;
         }
     }
-    for (size_t i = 0; i < srodowisko->drapiezneSlimaki->size(); i++) {
-        if (srodowisko->drapiezneSlimaki-> operator[](i)->get_martwy() == true) {
-            srodowisko->drapiezneSlimaki->erase(srodowisko->drapiezneSlimaki->begin() + i);
+    for (size_t i = 0; i < DrapieznySlimak::gatunek->size(); i++) {
+        if (DrapieznySlimak::gatunek-> operator[](i)->get_martwy() == true) {
+            DrapieznySlimak::gatunek->erase(DrapieznySlimak::gatunek->begin() + i);
             i--;
         }
     }
-    for (size_t i = 0; i < srodowisko->stworzenia->size(); i++) {
-        if (srodowisko->stworzenia-> operator[](i)->get_martwy() == true) {
-            Stworzenie* temp = srodowisko->stworzenia-> operator[](i);
-            srodowisko->stworzenia->erase(srodowisko->stworzenia->begin() + i);
+    for (size_t i = 0; i < Stworzenie::wszystkie->size(); i++) {
+        if (Stworzenie::wszystkie-> operator[](i)->get_martwy() == true) {
+            Stworzenie* temp = Stworzenie::wszystkie-> operator[](i);
+            Stworzenie::wszystkie->erase(Stworzenie::wszystkie->begin() + i);
             delete temp;
             i--;
         }
     }
 
     //sprawdzenie czy symulacja powinna sie zakonczyc
-    if (srodowisko->stworzenia->size() == 0)
+    if (Stworzenie::wszystkie->size() == 0)
         return true;
     return false;
 }

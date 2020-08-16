@@ -4,6 +4,8 @@
 #include "stworzenie.h"
 
 class Roslina : public Stworzenie {
+public:
+    static std::shared_ptr<std::deque<Stworzenie*>> gatunek;
 protected:
     static const int POCZATKOWA_WIELKOSC = 1;
     static const int PRZYROST = 3;

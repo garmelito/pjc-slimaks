@@ -27,4 +27,8 @@ Srodowisko::Srodowisko(int roslin_start, int roslinozernych_start, int drapiezny
 
     RoslinozernySlimak::pozywienie = rosliny;
     DrapieznySlimak::pozywienie = roslinozerneSlimaki;
+    Roslina::gatunek = rosliny;
+    RoslinozernySlimak::gatunek = roslinozerneSlimaki;
+    DrapieznySlimak::gatunek = drapiezneSlimaki;
+    Stworzenie::wszystkie = stworzenia;
 }
