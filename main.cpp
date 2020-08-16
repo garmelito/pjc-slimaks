@@ -1,4 +1,7 @@
+#include "roslina.h"
+#include "slimak.h"
 #include "srodowisko.h"
+#include "stworzenie.h"
 #include "symulacja.h"
 
 #include <cstdlib>
@@ -6,6 +9,9 @@
 #include <iostream>
 
 Symulacja* symulacja;
+
+std::shared_ptr<std::deque<Stworzenie*>> RoslinozernySlimak::pozywienie;
+std::shared_ptr<std::deque<Stworzenie*>> DrapieznySlimak::pozywienie;
 
 int main(int argc, char *argv[])
 {

@@ -8,8 +8,6 @@ class Stworzenie {
 protected:
     bool martwy;
     int wielkosc;
-public:
-    const std::shared_ptr<std::deque<Stworzenie*>> pozywienie;
 
 protected:
     virtual void rosnij() = 0;

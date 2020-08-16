@@ -25,6 +25,8 @@ public:
 };
 
 class RoslinozernySlimak : public Slimak {
+public:
+    static std::shared_ptr<std::deque<Stworzenie*>> pozywienie;
 protected:
     void rozmnazajSie();
     bool zjedz();
@@ -35,6 +37,8 @@ public:
 };
 
 class DrapieznySlimak : public Slimak {
+public:
+    static std::shared_ptr<std::deque<Stworzenie*>> pozywienie;
 protected:
     void rozmnazajSie();
     bool zjedz();
